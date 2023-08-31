@@ -1,10 +1,11 @@
+---
 - name: Playbook for creating ec2 and route 53 records
   hosts: localhost
   connection: local
   gather_facts: false
   become: yes
   vars:
-    names: 
+    names:
       - web
       - mongodb
       - catalogue
@@ -16,7 +17,6 @@
       - rabbitmq
       - payments
       - dispatch
-
   tasks:
     - name: Create mongodb and mysql of type t3.meduim
       ec2:
@@ -30,7 +30,6 @@
           Name: item
       with_items: "{{ names }}"
       when: item == "mongodb" or item == "mysql"
-    
     - name: Create other instances with type of t3.micro
       ec2:
         region: us-east-1
@@ -43,8 +42,3 @@
           Name: item
       with_items: "{{ names }}"
       when: item != "mongodb" or item != "mysql"
-
-   
-
-        
-
