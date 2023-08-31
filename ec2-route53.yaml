@@ -38,4 +38,4 @@
         instance_tags:
           Name: "{{ item }}"
       with_items: "{{ names }}"
-      when: item != "mongodb" or item != "mysql"
+      when: item != "mongodb" and item != "mysql"
