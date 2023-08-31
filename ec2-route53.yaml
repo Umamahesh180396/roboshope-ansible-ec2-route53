@@ -17,6 +17,7 @@
       - rabbitmq
       - payments
       - dispatch
+
   tasks:
     - name: Create mongodb and mysql of type t3.meduim
       ec2:
@@ -27,7 +28,7 @@
         count: "{{ names|length-9 }}"
         group_id: sg-0e658def150f1a79a
         instance_tags:
-          Name: item
+          Name: "{{ item }}"
       with_items: "{{ names }}"
       when: item == "mongodb" or item == "mysql"
     - name: Create other instances with type of t3.micro
@@ -39,6 +40,6 @@
         count: "{{ names|length-2 }}"
         group_id: sg-0e658def150f1a79a
         instance_tags:
-          Name: item
+          Name: "{{ item }}"
       with_items: "{{ names }}"
       when: item != "mongodb" or item != "mysql"
