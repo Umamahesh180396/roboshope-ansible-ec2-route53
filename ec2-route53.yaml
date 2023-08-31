@@ -17,7 +17,7 @@
       - payments
       - dispatch
 
-   tasks:
+  tasks:
     - name: Create mongodb and mysql of type t3.meduim
       ec2:
         region: us-east-1
