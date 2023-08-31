@@ -1,5 +1,6 @@
 - name: Playbook for creating ec2 and route 53 records
   hosts: localhost
+  connection: local
   gather_facts: false
   become: yes
   vars:
@@ -27,7 +28,7 @@
         group_id: sg-0e658def150f1a79a
         instance_tags:
           Name: item
-        with_items: "{{ names }}"
+      with_items: "{{ names }}"
       when: item == "mongodb" or item == "mysql"
     
     - name: Create other instances with type of t3.micro
@@ -40,7 +41,7 @@
         group_id: sg-0e658def150f1a79a
         instance_tags:
           Name: item
-        with_items: "{{ names }}"
+      with_items: "{{ names }}"
       when: item != "mongodb" or item != "mysql"
 
    
